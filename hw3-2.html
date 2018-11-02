@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="mycss.css">
+    <script type="text/javascript" src="myscript.js">
+    </script>
+    <title>hw3-2</title>
+</head>
+
+<body>
+    <h3>Simple Resume</h3>
+    <nav>
+        <ul class="row">
+            <li id="tab1" onclick="showcontent(1)">Basic Information</li>
+            <li id="tab2" onclick="showcontent(2)">Work History</li>
+            <li id="tab3" onclick="showcontent(3)">Education</li>
+            <li id="tab4" onclick="showcontent(4)">Award</li>
+            <li id="tab5" onclick="showcontent(5)">Skills</li>
+            <li id="tab6" onclick="showcontent(6)">Other</li>
+            <li id="tab7" onclick="showcontent(7)">Overview</li>
+        </ul>
+    </nav>
+    <section>
+        <article id="div_content">
+            <div id="content1">
+                <ul>
+                    <li> Last Name: <input type="text" id="lname" value="sehoon"></li>
+                    <li> Middle Name: <input type="text" id="mname" value="goel"></li>
+                    <li> First Name: <input type="text" id="fname" value="lee"></li>
+                    <li> Image: <input type="file" accept="/*" id="image" onchange="loadImg(event)"></li>
+                    <li> Contact Information
+                        <ul>
+                            <li> Address:<input type="text" id="address" value="earth"></li>
+                            <li> Call No.:<input type="text" id="call" value="one-is-the"></li>
+                            <li> E-mail:<input type="text" id="mail_id" value="frostbastard@gmail.com"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="content2">
+                Career Objective:<br>
+                <input type="text" id="career">
+            </div>
+            <div id="content3">
+                Education
+                <ul id="edu">
+                    <li><input type="text" value="고대"></li>
+                </ul>
+                <input type="button" value="+" onclick="Add.Add_li_edu()">
+            </div>
+            <div id="content4">
+                Experience
+                <ul id="exp">
+                    <li><input type="text"></li>
+                </ul>
+                <input type="button" value="+" onclick="Add.Add_li_exp()">
+            </div>
+            <div id="content5">
+                skill
+                <div id="Skill_table">
+                    <table>
+                        <caption></caption>
+                        <thead>
+                            <th>분야</th>
+                            <th>기술명</th>
+                            <th>실력</th>
+                        </thead>
+                        <tbody id="Skill_table_body">
+                            <tr>
+                                <td><input type="text" value="정보기술"></td>
+                                <td><input type="text" value="정보처리기사"></td>
+                                <td><input type="text" value="-"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="button" value="+" onclick="Add.Add_tr()">
+            </div>
+            <div id="content6">
+                Other
+                <ul id="etc">
+                    <li><input type="text"></li>
+                </ul>
+                <input type="button" value="+" onclick="Add.Add_li_etc()">
+            </div>
+            <div id="content7">
+                overview
+                <input type="button" onclick="myprint()" value="제출" />
+                <span>Title Font Family :
+                    <select id="font_title" onchange="Change_font.Title()">
+                        <option value="4">Default</option>
+                        <option value="1">Courier New</option>
+                        <option value="2">Lucida Console</option>
+                        <option value="3">Impact</option>
+                    </select>
+                </span>
+                <span>Content Font Family :
+                    <select id="font_content" onchange="Change_font.Content()">
+                        <option value="1">Default</option>
+                        <option value="2">Arial</option>
+                        <option value="3">Georgia</option>
+                    </select>
+                </span>
+                <span>Title Font Size :
+                    <select id="size_title" onchange="Change_size.Title()">
+                        <option value="1">24px</option>
+                        <option value="2">28px</option>
+                        <option value="3">36px</option>
+                    </select>
+                </span>
+                <span>Subtitle Font Size :
+                    <select id="size_subtitle" onchange="Change_size.Subtitle()">
+                        <option value="1">16px</option>
+                        <option value="2">20px</option>
+                        <option value="3">28px</option>
+                    </select>
+                </span>
+                <span>Content Font Size :
+                    <select id="size_content" onchange="Change_size.Content()">
+                        <option value="1">12px</option>
+                        <option value="2">16px</option>
+                        <option value="3">20px</option>
+                    </select>
+                </span>
+                <span>
+                    Background Color : 
+                    <select id="bgc" onchange="Change_bgc.bgc()">
+                        <option value="1">색깔</option>
+                        <option value="2">그림</option>
+                    </select>
+                </span>
+                <div id="output">
+                    <h3>Curriculum Vitae</h3>
+                    <div id="out_basic">
+                        <h4 id="out_name"></h4>
+                        <h4>Contact & Address</h4>
+                        <ul id="out_NC">
+                            <li id="out_call"></li>
+                            <li id="out_mail"></li>
+                            <li id="out_adrs"></li>
+                        </ul>
+                        <img id="out_image" width="100px" height="100px" />
+                    </div>
+                    <div>
+                        <h4>Objective</h4>
+                        <p id="out_career">
+                        </p>
+                    </div>
+                    <div id="out_edu">
+                        <h4>Education</h4>
+                        <ul id="out_edu_ul"></ul>
+                    </div>
+                    <div id="out_exp">
+                        <h4>Experience</h4>
+                        <ul id="out_exp_ul"></ul>
+                    </div>
+                    <div id="out_skill">
+                        <h4>Skill</h4>
+                        <div id="out_skill_table">
+                        </div>
+                    </div>
+                    <div id="out_etc">
+                        <h4>Others</h4>
+                        <ul id="out_etc_ul"></ul>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</body>
+
+</html>
